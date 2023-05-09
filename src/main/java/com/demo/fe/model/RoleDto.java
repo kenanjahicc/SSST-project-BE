@@ -12,4 +12,5 @@ public class RoleDto {
     private Long id;
     private String title;
     private String description;
+    private Double salary;
 }
