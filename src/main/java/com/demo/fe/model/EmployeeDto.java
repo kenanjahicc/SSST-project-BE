@@ -1,5 +1,7 @@
 package com.demo.fe.model;
 
+import com.demo.fe.data.entity.RoleEntity;
+import com.demo.fe.data.entity.TeamEntity;
 import lombok.*;
 
 @AllArgsConstructor
@@ -12,7 +14,8 @@ public class EmployeeDto {
 
     private Double salary;
 
-    private Team team;
+    private TeamEntity team;
 
-    private Role role;
+    private RoleEntity role;
+
 }

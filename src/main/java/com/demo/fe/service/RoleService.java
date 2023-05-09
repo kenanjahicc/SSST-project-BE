@@ -38,13 +38,13 @@ public class RoleService {
         return result;
     }
 
-    public RoleDto getRole(long id) {
+    public RoleDto getRole(Integer id) {
         roleRepository.getById(id);
 
         return new RoleDto(id, "Designer", "Conduct user research and design the app's user interface to ensure a seamless and enjoyable user experience.", 1500.);
     }
 
-    public RoleDto updateRole(long id, RoleDto roleDto) {
+    public RoleDto updateRole(Integer id, RoleDto roleDto) {
         System.out.println("Role found for a give id: " + id);
         roleDto.setId(id);
         roleDto.setTitle("DevOps");
@@ -52,7 +52,7 @@ public class RoleService {
         return roleDto;
     }
 
-    public void deleteRole(long id) {
+    public void deleteRole(Integer id) {
         System.out.println("Deleted " + id);
     }
 }
