@@ -1,4 +1,4 @@
-package com.demo.fe.model.entities;
+package com.demo.fe.data.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
