@@ -1,7 +1,9 @@
 package com.demo.fe.controller;
 
+import com.demo.fe.data.entity.TeamEntity;
 import com.demo.fe.model.EmployeeDto;
 import com.demo.fe.model.ErrorObject;
+import com.demo.fe.model.TeamDto;
 import com.demo.fe.service.TeamService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +22,9 @@ public class TeamController {
     TeamService teamService;
 
     @GetMapping("")
-    ResponseEntity<List<Team>> getTeamList(){
+    ResponseEntity<List<TeamDto>> getTeamList(){
         log.info("getTeamList() called");
-        return new ResponseEntity<>(teamService.getTeam(), HttpStatus.OK);
+        return new ResponseEntity<List<TeamDto>>(teamService.getTeam(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
