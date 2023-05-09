@@ -5,25 +5,29 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 
 @Entity
-@Table(name ="role")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+public class TeamEntity {
 
-public class RoleEntity {
-
-    @jakarta.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+    private Integer id;
 
-    @Column(name = "title")
     private String title;
 
-    @Column(name = "description")
-    private String description;
-    @Column(name = "salary")
-    private Double salary;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employee_id")
+    private EmployeeEntity employee;
+
+    private double gained;
+
+    private double lost;
+
+    private double profit;
+
 }
