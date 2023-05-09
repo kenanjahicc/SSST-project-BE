@@ -1,12 +1,15 @@
 package com.demo.fe.service;
-
 import com.demo.fe.data.entity.RoleEntity;
 import com.demo.fe.data.repository.RoleRepository;
 import com.demo.fe.model.RoleDto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
+@Service
+@Slf4j
 public class RoleService {
     private final RoleRepository roleRepository;
     public RoleService(RoleRepository roleRepository) {
@@ -52,5 +55,4 @@ public class RoleService {
     public void deleteRole(long id) {
         System.out.println("Deleted " + id);
     }
-
 }
