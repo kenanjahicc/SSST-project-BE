@@ -1,4 +1,4 @@
-package com.demo.fe.model.entities;
+package com.demo.fe.data.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,4 +24,6 @@ public class RoleEntity {
 
     @Column(name = "description")
     private String description;
+    @Column(name = "salary")
+    private Double salary;
 }

@@ -9,7 +9,8 @@ import lombok.Setter;
 @AllArgsConstructor
 
 public class RoleDto {
-    private Long id;
+    private Integer id;
     private String title;
     private String description;
+    private Double salary;
 }
