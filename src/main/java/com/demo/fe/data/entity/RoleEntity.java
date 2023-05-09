@@ -24,4 +24,6 @@ public class RoleEntity {
 
     @Column(name = "description")
     private String description;
+    @Column(name = "salary")
+    private Double salary;
 }
