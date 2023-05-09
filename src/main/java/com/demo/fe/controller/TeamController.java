@@ -35,6 +35,12 @@ public class TeamController {
         }
     }
 
+    @GetMapping("/{id}")
+    ResponseEntity<List<Object>>getAllEmployeesByTeam(@PathVariable Integer id){
+        log.info("getAllEmployeesByTeam() called");
+        return new ResponseEntity<>(teamService.getAllEmployeesByTeam(id), HttpStatus.OK);
+    }
+
     @PostMapping("")
     ResponseEntity<Object> createTeam(@RequestBody TeamDto teamDto) {
         log.info("createEmployee() called");
