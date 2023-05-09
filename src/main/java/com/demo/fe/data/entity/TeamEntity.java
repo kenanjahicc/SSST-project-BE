@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -20,9 +22,8 @@ public class TeamEntity {
 
     private String title;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id")
-    private EmployeeEntity employee;
+    @OneToMany(mappedBy = "team")
+    private List<EmployeeEntity> employee;
 
     private double gained;
 

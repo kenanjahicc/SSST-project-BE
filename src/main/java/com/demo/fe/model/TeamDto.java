@@ -3,6 +3,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import com.demo.fe.data.entity.EmployeeEntity;
+import java.util.List;
 
 @Getter
 @Setter
@@ -10,7 +11,7 @@ import com.demo.fe.data.entity.EmployeeEntity;
 public class TeamDto {
 
     private String title;
-    private EmployeeEntity employee;
+    private List<EmployeeEntity> employee;
     private double gained;
     private double lost;
     private double profit;
