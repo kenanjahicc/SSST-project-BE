@@ -4,12 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Getter
 @Setter
 @AllArgsConstructor
 
-public class RoleDto {
+public class TeamDto {
     private Integer id;
-    private String title;
-    private String description;
+    private String name;
+    private Double monthlyIncome;
 }
