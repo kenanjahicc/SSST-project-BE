@@ -36,8 +36,8 @@ public class TeamController {
     }
 
     @PostMapping("")
-    ResponseEntity<Object> createRole(@RequestBody TeamDto team) {
-        log.info("createRole() called");
+    ResponseEntity<Object> createTeam(@RequestBody TeamDto team) {
+        log.info("createTeam() called");
         try {
             return new ResponseEntity<>(teamService.createTeam(team), HttpStatus.OK);
         } catch (Exception e) {
