@@ -53,9 +53,9 @@ public class RoleDataService {
 
     public Integer deleteRoleById(Integer roleId) throws Exception  {
         // check whether id exists or not. If not, throw an exception
-        this.getRoleById(roleId);
+        RoleEntity role = this.getRoleById(roleId);
 
-        if (employeeRepository.findAllByRole(roleId) != null) {
+        if (employeeRepository.findAllByRole(role) != null) {
             throw new Exception(String.format("Could not delete role, an employee with role id: {} already exists!", roleId));
         }
 

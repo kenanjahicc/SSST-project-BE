@@ -47,9 +47,9 @@ public class TeamDataService {
 
     public Integer deleteTeamById(Integer teamId) throws Exception  {
         // check whether id exists or not. If not, throw an exception
-        this.getTeamById(teamId);
+        TeamEntity team = this.getTeamById(teamId);
 
-        if (employeeRepository.findAllByTeam(teamId) != null) {
+        if (employeeRepository.findAllByTeam(team) != null) {
             throw new Exception(String.format("Could not delete team, an employee in team with id: {} already exists!", teamId));
         }
 
