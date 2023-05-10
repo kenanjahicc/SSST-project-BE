@@ -23,7 +23,7 @@ public class TeamDataService {
         return repository.save(team);
     }
 
-    public List<TeamEntity> getRoleList() {
+    public List<TeamEntity> getTeamList() {
         log.info("getRoleList() called");
         return repository.findAll();
     }
