@@ -1,5 +1,6 @@
 package com.demo.fe.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -25,6 +26,7 @@ public class TeamEntity {
     private String title;
 
     @OneToMany(mappedBy = "team", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("team")
     private List<EmployeeEntity> employees;
 
     @CreationTimestamp
