@@ -9,6 +9,5 @@ import lombok.*;
 @Getter
 public class RoleDto {
     private String title;
-    private String description;
     private Double income;
 }

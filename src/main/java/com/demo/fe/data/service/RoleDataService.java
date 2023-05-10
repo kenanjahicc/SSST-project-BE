@@ -40,6 +40,17 @@ public class RoleDataService {
         }
     }
 
+    public RoleEntity getRoleByTitle(String title) throws Exception {
+        log.info("getRoleByName called with name {}", title);
+
+        try {
+            return repository.findOneByTitle(title);
+        } catch (Exception e) {
+            log.error("findOneByTitle {} failed.", title, e);
+            throw new Exception(String.format("getRoleByTitle(\"%s\") failed. Error: %s", name, e.getLocalizedMessage()));
+        }
+    }
+
     public Integer deleteRoleById(Integer roleId) throws Exception  {
         // check whether id exists or not. If not, throw an exception
         this.getRoleById(roleId);

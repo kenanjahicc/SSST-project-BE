@@ -21,7 +21,7 @@ public class TeamEntity {
     @Column(name = "id", updatable = false, nullable = false)
     private Integer id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "title", nullable = false)
     private String title;
 
     @OneToMany(mappedBy = "team")

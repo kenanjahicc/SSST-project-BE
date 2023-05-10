@@ -22,7 +22,7 @@ public class EmployeeEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "salary", nullable = false)
     private Double salary;
 
     @ManyToOne(fetch = FetchType.LAZY)
