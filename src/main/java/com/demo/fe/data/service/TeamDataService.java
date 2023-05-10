@@ -39,6 +39,11 @@ public class TeamDataService {
             throw new Exception(String.format("Could not find employee with id %s", teamId));
         }
     }
+    public TeamEntity getTeamByTitle(String title) {
+        log.info("getTeamByTitle called with title " + title);
+        return repository.findOneByTitle(title);
+    }
+
 
     public Integer deleteTeamById(Integer teamId) throws Exception  {
         // check whether id exists or not. If not, throw an exception

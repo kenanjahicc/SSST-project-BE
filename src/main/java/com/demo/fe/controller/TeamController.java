@@ -1,6 +1,6 @@
 package com.demo.fe.controller;
 
-import com.demo.fe.data.entity.RoleEntity;
+import com.demo.fe.data.entity.TeamEntity;
 import com.demo.fe.model.ErrorObject;
 import com.demo.fe.model.TeamDto;
 import com.demo.fe.service.TeamService;
@@ -20,7 +20,7 @@ public class TeamController {
     TeamService teamService;
 
     @GetMapping("")
-    ResponseEntity<List<RoleEntity>> getTeamList() {
+    ResponseEntity<List<TeamEntity>> getTeamList() {
         log.info("getTeamList() called");
         return new ResponseEntity<>(teamService.getTeamList(), HttpStatus.OK);
     }
