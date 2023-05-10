@@ -55,6 +55,18 @@ public class EmployeeController {
             return new ResponseEntity<>(new ErrorObject(100, e.getLocalizedMessage()), HttpStatus.BAD_REQUEST);
         }
     }
+
+    @PutMapping("-organization/{id}")
+    ResponseEntity<Object> removeEmployeeFromOrganization(@PathVariable Integer id) {
+        log.info("removeEmployeeFromOrganization() called");
+        try {
+            return new ResponseEntity<>(employeeService.removeEmployeeFromOrganization(id), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ErrorObject(100, e.getLocalizedMessage()), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
     @DeleteMapping("/{id}")
     ResponseEntity<Object> deleteEmployeeById(@PathVariable Integer id) {
         try {
@@ -62,6 +74,6 @@ public class EmployeeController {
         } catch (Exception e) {
             return new ResponseEntity<>(new ErrorObject(500, e.getLocalizedMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
+
 }

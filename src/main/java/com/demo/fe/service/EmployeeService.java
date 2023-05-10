@@ -96,6 +96,22 @@ public class EmployeeService {
         return employeeDataService.getEmployeeById(createdEmployee.getId());
     }
 
+    public EmployeeEntity removeEmployeeFromOrganization(Integer employeeId) throws Exception {
+        log.info("updateEmployeeById() called with id: {}", employeeId);
+
+        EmployeeEntity existingEntity = employeeDataService.getEmployeeById(employeeId);
+        existingEntity.setId(existingEntity.getId());
+        existingEntity.setName(existingEntity.getName());
+        existingEntity.setSalary(existingEntity.getSalary());
+        existingEntity.setTeam(null);
+        existingEntity.setRole(null);
+
+        EmployeeEntity createdEmployee = employeeDataService.createOrUpdateEmployee(existingEntity);
+
+        // go to db and get all objects
+        return employeeDataService.getEmployeeById(createdEmployee.getId());
+    }
+
     public Integer deleteEmployeeById(Integer id) throws Exception {
         log.info("deleteEmployeeById() called with id: {}", id);
         return employeeDataService.deleteEmployeeById(id);
