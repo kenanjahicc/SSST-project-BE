@@ -24,7 +24,7 @@ public class TeamDataService {
     }
 
     public List<TeamEntity> getTeamList() {
-        log.info("getRoleList() called");
+        log.info("getTeamList() called");
         return repository.findAll();
     }
 
@@ -35,8 +35,8 @@ public class TeamDataService {
         if (result.isPresent()) {
             return result.get();
         } else {
-            log.error(String.format("Could not find employee with id %s", teamId));
-            throw new Exception(String.format("Could not find employee with id %s", teamId));
+            log.error(String.format("Could not find team with id %s", teamId));
+            throw new Exception(String.format("Could not find team with id %s", teamId));
         }
     }
     public TeamEntity getTeamByTitle(String title) {
