@@ -10,5 +10,5 @@ import lombok.*;
 public class RoleDto {
     private String title;
     private String description;
-    private Double salary;
+    private Double income;
 }

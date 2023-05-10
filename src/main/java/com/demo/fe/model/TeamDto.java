@@ -9,10 +9,5 @@ import java.util.List;
 @Setter
 @Getter
 public class TeamDto {
-
     private String title;
-    private List<Integer> employees;
-    private double gained;
-    private double lost;
-    private double profit;
 }

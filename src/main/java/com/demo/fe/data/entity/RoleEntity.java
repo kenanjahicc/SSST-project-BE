@@ -22,9 +22,14 @@ public class RoleEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
 
+    @Column(name = "name", nullable = false)
     private String title;
+
+    @Column(name = "name", nullable = false)
     private String description;
-    private Double salary;
+
+    @Column(name = "name", nullable = false)
+    private Double income;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)

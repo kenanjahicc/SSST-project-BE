@@ -19,7 +19,10 @@ public class EmployeeEntity {
     @Column(name = "id", updatable = false, nullable = false)
     private Integer id;
 
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "name", nullable = false)
     private Double salary;
 
     @ManyToOne(fetch = FetchType.LAZY)
