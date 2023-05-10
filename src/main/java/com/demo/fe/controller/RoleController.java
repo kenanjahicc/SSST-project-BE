@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/api/team")
+@RequestMapping("/api/role")
 @RestController
 @Slf4j
-public class TeamController {
+public class RoleController {
 
 }

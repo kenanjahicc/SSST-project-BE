@@ -1,15 +1,13 @@
 package com.demo.fe.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
 @AllArgsConstructor
-
+@NoArgsConstructor
+@ToString
+@Setter
+@Getter
 public class RoleDto {
-    private Integer id;
     private String title;
     private String description;
     private Double salary;
