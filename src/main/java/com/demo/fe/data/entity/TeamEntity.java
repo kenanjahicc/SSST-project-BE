@@ -33,6 +33,7 @@ public class TeamEntity {
 //
 //    private double profit;
 
+
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
