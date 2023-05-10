@@ -1,7 +1,6 @@
 package com.demo.fe.controller;
 
 import com.demo.fe.data.entity.TeamEntity;
-import com.demo.fe.model.EmployeeDto;
 import com.demo.fe.model.ErrorObject;
 import com.demo.fe.model.TeamDto;
 import com.demo.fe.service.TeamService;
@@ -17,14 +16,13 @@ import java.util.List;
 @RestController
 @Slf4j
 public class TeamController {
-
     @Autowired
     TeamService teamService;
 
     @GetMapping("")
-    ResponseEntity<List<TeamDto>> getTeamList(){
+    ResponseEntity<List<TeamEntity>> getTeamList() {
         log.info("getTeamList() called");
-        return new ResponseEntity<List<TeamDto>>(teamService.getTeam(), HttpStatus.OK);
+        return new ResponseEntity<>(teamService.getTeamList(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -38,10 +36,10 @@ public class TeamController {
     }
 
     @PostMapping("")
-    ResponseEntity<Object> createTeam(@RequestBody TeamDto teamDto) {
-        log.info("createEmployee() called");
+    ResponseEntity<Object> createTeam(@RequestBody TeamDto team) {
+        log.info("createTeam() called");
         try {
-            return new ResponseEntity<>(teamService.createTeam(teamDto), HttpStatus.OK);
+            return new ResponseEntity<>(teamService.createTeam(team), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ErrorObject(100, e.getLocalizedMessage()), HttpStatus.BAD_REQUEST);
         }
@@ -49,17 +47,16 @@ public class TeamController {
 
     @PutMapping("/{id}")
     ResponseEntity<Object> updateTeamById(@PathVariable Integer id,
-                                              @RequestBody TeamDto teamDto) {
+                                          @RequestBody TeamDto team) {
         log.info("updateTeamById() called");
         try {
-            return new ResponseEntity<>(teamService.updateTeamById(id, teamDto), HttpStatus.OK);
+            return new ResponseEntity<>(teamService.updateTeamById(id, team), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ErrorObject(100, e.getLocalizedMessage()), HttpStatus.BAD_REQUEST);
         }
     }
     @DeleteMapping("/{id}")
     ResponseEntity<Object> deleteTeamById(@PathVariable Integer id) {
-        log.info("deleteTeambyId() called");
         try {
             return new ResponseEntity<>(teamService.deleteTeamById(id), HttpStatus.OK);
         } catch (Exception e) {
@@ -67,4 +64,5 @@ public class TeamController {
         }
 
     }
+
 }

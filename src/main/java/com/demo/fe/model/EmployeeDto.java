@@ -14,8 +14,8 @@ public class EmployeeDto {
 
     private Double salary;
 
-    private TeamEntity team;
+    private Integer team;
 
-    private RoleEntity role;
+    private Integer role;
 
 }

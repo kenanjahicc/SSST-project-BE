@@ -1,8 +1,8 @@
 package com.demo.fe.controller;
 
 import com.demo.fe.data.entity.RoleEntity;
-import com.demo.fe.model.RoleDto;
 import com.demo.fe.model.ErrorObject;
+import com.demo.fe.model.RoleDto;
 import com.demo.fe.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/api/role")
 @RestController
 @Slf4j
-public class roleController {
+public class RoleController {
     @Autowired
     RoleService roleService;
 
@@ -64,4 +64,5 @@ public class roleController {
         }
 
     }
+
 }

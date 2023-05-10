@@ -1,58 +1,95 @@
 package com.demo.fe.service;
-import com.demo.fe.data.entity.RoleEntity;
-import com.demo.fe.data.repository.RoleRepository;
-import com.demo.fe.model.RoleDto;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.demo.fe.data.entity.RoleEntity;
+import com.demo.fe.data.service.RoleDataService;
+import com.demo.fe.model.RoleDto;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Objects;
 
 @Service
 @Slf4j
 public class RoleService {
-    private final RoleRepository roleRepository;
-    public RoleService(RoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
+    @Autowired
+    RoleDataService service;
+
+    public List<RoleEntity> getRoleList() {
+        log.info("getRoleList() called");
+        return service.getRoleList();
     }
 
-    public RoleDto createRole(RoleDto roleDto) {
-        RoleEntity role = new RoleEntity();
-        role.setTitle(roleDto.getTitle());
-        role.setDescription(roleDto.getDescription());
-        role.setSalary(roleDto.getSalary());
-        roleRepository.save(role);
-        roleDto.setId(role.getId());
-        return roleDto;
+    public RoleEntity getRoleById(Integer id) throws Exception  {
+        log.info("getRoleById() called with id: {}", id);
+        return service.getRoleById(id);
     }
 
-    public List<RoleDto> getRoleList() {
-        List<RoleEntity> roles = roleRepository.findAll();
-        List<RoleDto> result = new ArrayList<>();
-        for (RoleEntity role : roles) {
-            result.add(new RoleDto(role.getId(),
-                    role.getTitle(),
-                    role.getDescription(),
-                    role.getSalary()));
+    public RoleEntity validatePayloadAndReturnEntity(Integer roleId, RoleDto role) throws Exception {
+        Objects.requireNonNull(role.getTitle(), "Role Title is required");
+        if (role.getTitle().isEmpty()){
+            log.info("Role Title is required!");
+            throw new Exception("Role Title is required!");
         }
-        return result;
+
+        Objects.requireNonNull(role.getIncome(), "Income is required");
+
+        // validation
+        // 1. update
+        if (roleId != null) {
+            RoleEntity roleEntity = service.getRoleById(roleId);
+
+            if(!Objects.equals(roleEntity.getTitle(), role.getTitle())) {
+                if (service.getRoleByTitle(role.getTitle()) != null){
+                    log.info("Role with name {} already exists. It is not possible to update it.", role.getTitle());
+                    throw new Exception(String.format("Role with name '%s' already exists. It is not possible to update it.", role.getTitle()));
+                }
+            }
+        } else { // 2. insert
+            // in a case of insert (roleId is null) check if name already exists
+            if (service.getRoleByTitle(role.getTitle()) != null){
+                log.info("Role with name {} already exists.", role.getTitle());
+                throw new Exception(String.format("Role with name '%s' already exists.", role.getTitle()));
+            }
+        }
+
+        RoleEntity roleDb = new RoleEntity();
+        // in case of insert roleId will be created on repository level
+        if (roleId != null) {
+            roleDb.setId(roleId);
+        }
+
+        roleDb.setTitle(role.getTitle());
+        roleDb.setIncome(role.getIncome());
+
+        return roleDb;
     }
 
-    public RoleDto getRole(Integer id) {
-        roleRepository.getById(id);
+    public RoleEntity createRole(RoleDto role) throws Exception {
+        log.info("createRole() called with data {}: ", role);
 
-        return new RoleDto(id, "Designer", "Conduct user research and design the app's user interface to ensure a seamless and enjoyable user experience.", 1500.);
+        RoleEntity featureDb = this.validatePayloadAndReturnEntity(null, role);
+
+        RoleEntity createdFeature = service.createOrUpdateRole(featureDb);
+
+        return service.getRoleById(createdFeature.getId());
     }
 
-    public RoleDto updateRole(Integer id, RoleDto roleDto) {
-        System.out.println("Role found for a give id: " + id);
-        roleDto.setId(id);
-        roleDto.setTitle("DevOps");
-        roleDto.setSalary(1600.);
-        return roleDto;
+    public RoleEntity updateRoleById(Integer roleId, RoleDto role) throws Exception {
+        log.info("updateRoleById() called with id: {}", roleId);
+
+        RoleEntity roleDb = this.validatePayloadAndReturnEntity(roleId, role);
+
+        RoleEntity createdFeature = service.createOrUpdateRole(roleDb);
+
+        // go to db and get all objects
+        return service.getRoleById(createdFeature.getId());
     }
 
-    public void deleteRole(Integer id) {
-        System.out.println("Deleted " + id);
+    public Integer deleteRoleById(Integer id) throws Exception {
+        log.info("deleteRoleById() called with id: {}", id);
+        return service.deleteRoleById(id);
     }
+
 }
