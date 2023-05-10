@@ -47,7 +47,7 @@ public class RoleDataService {
             return repository.findOneByTitle(title);
         } catch (Exception e) {
             log.error("findOneByTitle {} failed.", title, e);
-            throw new Exception(String.format("getRoleByTitle(\"%s\") failed. Error: %s", name, e.getLocalizedMessage()));
+            throw new Exception(String.format("getRoleByTitle(\"%s\") failed. Error: %s", title, e.getLocalizedMessage()));
         }
     }
 
@@ -56,7 +56,7 @@ public class RoleDataService {
         this.getRoleById(roleId);
 
         if (employeeRepository.findAllByRole(roleId) != null) {
-            throw new Exception(String.format("Could not delete role, an employee with role id: {} already exists!", roleId))
+            throw new Exception(String.format("Could not delete role, an employee with role id: {} already exists!", roleId));
         }
 
         // delete the role

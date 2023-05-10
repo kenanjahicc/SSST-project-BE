@@ -45,7 +45,7 @@ public class TeamDataService {
         this.getTeamById(teamId);
 
         if (employeeRepository.findAllByTeam(teamId) != null) {
-            throw new Exception(String.format("Could not delete team, an employee in team with id: {} already exists!", teamId))
+            throw new Exception(String.format("Could not delete team, an employee in team with id: {} already exists!", teamId));
         }
 
         // delete the employee
