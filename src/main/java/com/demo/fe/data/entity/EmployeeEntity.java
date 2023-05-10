@@ -25,11 +25,11 @@ public class EmployeeEntity {
     @Column(name = "salary", nullable = false)
     private Double salary;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "team_id")
     private TeamEntity team;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "role_id")
     private RoleEntity role;
 

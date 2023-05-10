@@ -24,7 +24,7 @@ public class TeamEntity {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team", fetch = FetchType.EAGER)
     private List<EmployeeEntity> employees;
 
     private double gained;

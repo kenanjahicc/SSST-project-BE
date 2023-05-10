@@ -59,18 +59,24 @@ public class EmployeeService {
 
         }
 
-        TeamEntity team = teamDataService.getTeamById(employee.getTeam());
-        RoleEntity role = roleDataService.getRoleById(employee.getRole());
 
         EmployeeEntity employeeDb = new EmployeeEntity();
         // in case of insert employeeId will be created on repository level
         if (employeeId != null) {
             employeeDb.setId(employeeId);
         }
+        if (employee.getTeam() != null) {
+            TeamEntity team = teamDataService.getTeamById(employee.getTeam());
+            employeeDb.setTeam(team);
+
+        }
+        if (employee.getRole() != null) {
+            RoleEntity role = roleDataService.getRoleById(employee.getRole());
+            employeeDb.setRole(role);
+
+        }
         employeeDb.setName(employee.getName());
         employeeDb.setSalary(employee.getSalary());
-        employeeDb.setTeam(team);
-        employeeDb.setRole(role);
 
         return employeeDb;
     }
