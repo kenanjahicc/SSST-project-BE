@@ -1,4 +1,4 @@
-package config;
+package com.demo.fe.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +18,7 @@ public class CorsConfiguration {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedMethods("*")
-                        .allowedOrigins(frontendUrl);
+                        .allowedOrigins("*");
             }
         };
     }
